@@ -1,54 +1,28 @@
-const paletas = [
-  {
-    id: 1,
-    sabor: 'Açaí com Leite Condensado',
-    descricao:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
-    foto: 'assets/images/acai-com-leite-condensado.png',
-    preco: 10.0,
-  },
-  {
-    id: 2,
-    sabor: 'Banana com Nutella',
-    descricao:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
-    foto: 'assets/images/banana-com-nutella.png',
-    preco: 10.0,
-  },
-  {
-    id: 3,
-    sabor: 'Chocolate Belga',
-    descricao:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
-    foto: 'assets/images/chocolate-belga.png',
-    preco: 7.0,
-  },
-];
 
-const findAllPaletasService = () => {
+const Paletas = require('../models/Paleta')
+
+const findAllPaletasService = async () => {
+    const paletas = await Paletas.find();
   return paletas;
 };
-const findPaletaByIdService = (paramId) => {
-  return paletas.find((paleta) => paleta.id === paramId);
+
+const findPaletaByIdService = async (paramId) => {
+    const paletas = await Paletas.findById(paramId);
+  return paletas
 };
 
-const createPaletaService = (newPaleta) => {
-  const newID = paletas.length + 1;
-  newPaleta.id = newID;
-  paletas.push(newPaleta);
-  return newPaleta;
+const createPaletaService = async (newPaleta) => {
+    const paletaCreated = await Paletas.create(newPaleta)
+  return paletaCreated;
 };
 
-const updatePaletaService = (id, paletaEdited) => {
-  paletaEdited['id'] = id;
-  const paletaIndex = paletas.findIndex((paleta) => paleta.id == id);
-  paletas[paletaIndex] = paletaEdited;
-  return paletaEdited;
+const updatePaletaService = async (id, paletaEdited) => {
+    const paletaUpdate = await Paletas.findByIdAndUpdate(id, paletaEdited);
+  return paletaUpdate;
 };
 
-const deletePaletaService = (id) => {
-  const paletaIndex = paletas.findIndex((paleta) => paleta.id == id);
-  return paletas.splice(paletaIndex, 1);
+const deletePaletaService = async (id) => {
+  return await Paletas.findByIdAndDelete(id);
 };
 
 module.exports = {
