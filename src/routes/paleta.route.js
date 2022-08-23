@@ -2,9 +2,9 @@ const route = require('express').Router();
 const controllerPaletas = require('../controllers/paleta.controller');
 
 route.get('/all-paletas', controllerPaletas.findAllPaletasController);
-route.get('/paleta/:id', controllerPaletas.findPaletaByIdController);
-route.post('/createpaleta', controllerPaletas.createPaletaController);
-route.put('/update/:id', controllerPaletas.updatePaletaController);
-route.delete('/delete/:id', controllerPaletas.deletePaletaController);
+route.get('/find-paleta/:id', controllerPaletas.findPaletaByIdController);
+route.post('/create-paleta', controllerPaletas.createPaletaController);
+route.put('/update-paleta/:id', controllerPaletas.updatePaletaController);
+route.delete('/delete-paleta/:id', controllerPaletas.deletePaletaController);
 
 module.exports = route;

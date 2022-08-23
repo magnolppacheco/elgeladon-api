@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const paletasService = require('../services/paleta.service');
 
 const findAllPaletasController = async (req, res) => {
-  const paletas = await paletasService.findAllPaletasService();
+  const allPaletas = await paletasService.findAllPaletasService();
 
-  if(paletas.length == 0){
+  if(allPaletas.length == 0){
     return res.status(404).send({message:'No paletas found!'});
   }
-  res.send(paletas);
+  res.send(allPaletas);
 };
 
 const findPaletaByIdController = async (req, res) => {
@@ -19,15 +19,15 @@ const findPaletaByIdController = async (req, res) => {
     .send({message: 'Invalid ID!' });
   }
 
-  const PaletaChosen = await paletasService.findPaletaByIdService(idParam);
+  const chosenPaleta = await paletasService.findPaletaByIdService(idParam);
 
-  if(!PaletaChosen){
+  if(!chosenPaleta){
     return res
     .status(404)
     .send({message: 'Paleta has not been found!' });
   }
   
-  res.send(PaletaChosen);
+  res.send(chosenPaleta);
 };
 
 const createPaletaController = async (req, res) => {
@@ -57,21 +57,21 @@ const updatePaletaController = async (req, res) => {
     .status(400)
     .send({message: 'Invalid ID!' });}
 
-  const paletaEdit = req.body;
+  const editPaleta = req.body;
 
   if (
-    !paletaEdit ||
-    !paletaEdit.taste ||
-    !paletaEdit.description ||
-    !paletaEdit.image ||
-    !paletaEdit.price
+    !editPaleta ||
+    !editPaleta.taste ||
+    !editPaleta.description ||
+    !editPaleta.image ||
+    !editPaleta.price
   ) {
     return res
       .status(400)
       .send({ message: 'Submit all paleta fields!' });
   }
 
-  const updatedPaleta = await paletasService.updatePaletaService(idParam, paletaEdit);
+  const updatedPaleta = await paletasService.updatePaletaService(idParam, editPaleta);
   res.send(updatedPaleta);
 };
 
