@@ -1,23 +1,22 @@
-
-const Paletas = require('../models/Paleta')
+const Paletas = require('../models/Paleta');
 
 const findAllPaletasService = async () => {
-    const allPaletas = await Paletas.find();
+  const allPaletas = await Paletas.find();
   return allPaletas;
 };
 
 const findPaletaByIdService = async (idParam) => {
-    const onePaleta = await Paletas.findById(idParam);
+  const onePaleta = await Paletas.findById(idParam);
   return onePaleta;
 };
 
 const createPaletaService = async (newPaleta) => {
-    const createdPaleta = await Paletas.create(newPaleta)
+  const createdPaleta = await Paletas.create(newPaleta);
   return createdPaleta;
 };
 
 const updatePaletaService = async (idParam, editPaleta) => {
-    const updatedPaleta = await Paletas.findByIdAndUpdate(idParam, editPaleta);
+  const updatedPaleta = await Paletas.findByIdAndUpdate(idParam, editPaleta);
   return updatedPaleta;
 };
 

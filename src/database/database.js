@@ -12,6 +12,6 @@ function connectToDatabase() {
     .catch((err) => {
       return console.log(`Connection Error: ${err}`);
     });
-};
+}
 
 module.exports = connectToDatabase;
