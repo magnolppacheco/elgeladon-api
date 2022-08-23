@@ -32,7 +32,29 @@ const findPaletaByIdService = (paramId) => {
   return paletas.find((paleta) => paleta.id === paramId);
 };
 
+const createPaletaService = (newPaleta) => {
+  const newID = paletas.length + 1;
+  newPaleta.id = newID;
+  paletas.push(newPaleta);
+  return newPaleta;
+};
+
+const updatePaletaService = (id, paletaEdited) => {
+  paletaEdited['id'] = id;
+  const paletaIndex = paletas.findIndex((paleta) => paleta.id == id);
+  paletas[paletaIndex] = paletaEdited;
+  return paletaEdited;
+};
+
+const deletePaletaService = (id) => {
+  const paletaIndex = paletas.findIndex((paleta) => paleta.id == id);
+  return paletas.splice(paletaIndex, 1);
+};
+
 module.exports = {
   findAllPaletasService,
   findPaletaByIdService,
+  createPaletaService,
+  updatePaletaService,
+  deletePaletaService,
 };
