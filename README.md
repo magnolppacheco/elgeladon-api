@@ -1,1 +1,5 @@
-# elgeladon-api
+# Elgeladon-Api
+
+- API Rest do zero
+- Usado MongoDB
+- Modelo MVC
